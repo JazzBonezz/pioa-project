@@ -1,0 +1,30 @@
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 40px 32px 64px;
+    text-align: left;
+}
+
+.hero {
+    text-align: center;
+}
+
+.hero p {
+    max-width: 560px;
+    margin: 0 auto;
+    color: var(--text);
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+@media (max-width: 1024px) {
+    .dashboard {
+        padding: 24px 16px 48px;
+        gap: 28px;
+    }
+}

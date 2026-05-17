@@ -1,0 +1,78 @@
+.root {
+    padding: 28px 24px 32px;
+    border: 1px solid var(--accent-border);
+    border-radius: 12px;
+    background: var(--accent-bg);
+    text-align: left;
+}
+
+.title {
+    margin: 0 0 20px 0px;
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--text-h);
+}
+
+.lead {
+    margin: 0 0 20px;
+    max-width: 640px;
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.5;
+}
+
+.grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.card {
+    padding: 18px 20px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+}
+
+.card h3 {
+    margin: 0 0 12px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--accent);
+}
+
+.card ul {
+    margin: 0;
+    padding-left: 1.2em;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.card li {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text-h);
+}
+
+.card li strong {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.status {
+    margin: 0;
+    font-size: 15px;
+    color: var(--text);
+}
+
+.statusError {
+    composes: status;
+    color: #e11d48;
+}
+
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,60 @@
+.card {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--bg);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.featured {
+    border-color: var(--accent-border);
+    box-shadow:
+        var(--shadow),
+        0 0 0 1px var(--accent-bg);
+    overflow: visible;
+}
+
+.featured .body {
+    overflow: visible;
+    padding-left: 4px;
+}
+
+.panel .header {
+    padding-bottom: 4px;
+}
+
+.header {
+    padding: 20px 20px 0;
+}
+
+.header h2 {
+    margin-bottom: 16px;
+}
+
+.header p {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.45;
+}
+
+.body {
+    padding: 12px 12px 20px;
+    min-height: 200px;
+}
+
+.bodyTall {
+    composes: body;
+    min-height: 380px;
+}
+
+.status {
+    text-align: center;
+    padding: 48px 16px;
+    color: var(--text);
+    font-size: 15px;
+}
+
+.statusError {
+    composes: status;
+    color: #e11d48;
+}
