@@ -11,6 +11,7 @@ import {
 import type { CorrelationPoint } from '../api/types'
 import { factorLabelRu, yAxisWidthForLabels } from '../config/factorLabels'
 import { TOP_FACTOR_KEYS } from '../config/topFactors'
+import { MOBILE_QUERY, useMediaQuery } from '../hooks/useMediaQuery'
 
 const TOP_SET = new Set<string>(TOP_FACTOR_KEYS)
 
@@ -19,6 +20,7 @@ function barColor(factor: string) {
 }
 
 export function CorrelationsChart({ data }: { data: CorrelationPoint[] }) {
+    const isMobile = useMediaQuery(MOBILE_QUERY)
     const chartData = [...data]
         .filter((d) => d.r > 0)
         .sort((a, b) => b.r - a.r)
@@ -28,18 +30,27 @@ export function CorrelationsChart({ data }: { data: CorrelationPoint[] }) {
             isTop: TOP_SET.has(d.factor),
         }))
 
-    const axisWidth = yAxisWidthForLabels(chartData.map((d) => d.label))
+    const axisWidth = yAxisWidthForLabels(
+        chartData.map((d) => d.label),
+        isMobile,
+    )
     const maxR = chartData.length ? Math.max(...chartData.map((d) => d.r)) : 1
+    const rowHeight = isMobile ? 28 : 32
+    const chartHeight = Math.max(
+        isMobile ? 280 : 320,
+        chartData.length * rowHeight,
+    )
 
     return (
-        <ResponsiveContainer
-            width="100%"
-            height={Math.max(320, chartData.length * 32)}
-        >
+        <ResponsiveContainer width="100%" height={chartHeight}>
             <BarChart
                 data={chartData}
                 layout="vertical"
-                margin={{ top: 8, right: 24, left: 12, bottom: 8 }}
+                margin={
+                    isMobile
+                        ? { top: 6, right: 10, left: 2, bottom: 6 }
+                        : { top: 8, right: 24, left: 12, bottom: 8 }
+                }
             >
                 <CartesianGrid
                     strokeDasharray="3 3"
@@ -49,8 +60,9 @@ export function CorrelationsChart({ data }: { data: CorrelationPoint[] }) {
                 <XAxis
                     type="number"
                     domain={[0, Math.ceil(maxR * 10) / 10]}
-                    tick={{ fill: 'var(--text)', fontSize: 12 }}
+                    tick={{ fill: 'var(--text)', fontSize: isMobile ? 10 : 12 }}
                     stroke="var(--border)"
+                    tickCount={isMobile ? 4 : 5}
                 />
                 <YAxis
                     type="category"
@@ -70,7 +82,7 @@ export function CorrelationsChart({ data }: { data: CorrelationPoint[] }) {
                                 fill={
                                     row?.isTop ? 'var(--text-h)' : 'var(--text)'
                                 }
-                                fontSize={row?.isTop ? 12 : 11}
+                                fontSize={isMobile ? 10 : row?.isTop ? 12 : 11}
                                 fontWeight={row?.isTop ? 600 : 400}
                             >
                                 {payload.value}
@@ -104,7 +116,11 @@ export function CorrelationsChart({ data }: { data: CorrelationPoint[] }) {
                         color: 'var(--text-h)',
                     }}
                 />
-                <Bar dataKey="r" radius={[0, 4, 4, 0]} maxBarSize={20}>
+                <Bar
+                    dataKey="r"
+                    radius={[0, 4, 4, 0]}
+                    maxBarSize={isMobile ? 16 : 20}
+                >
                     {chartData.map((entry) => (
                         <Cell
                             key={entry.factor}

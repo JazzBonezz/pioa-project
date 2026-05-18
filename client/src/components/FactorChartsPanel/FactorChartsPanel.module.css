@@ -55,7 +55,34 @@
 }
 
 @media (max-width: 640px) {
+    .tabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        gap: 6px;
+        padding: 0 10px 10px;
+        margin: 0 -2px;
+    }
+
+    .tabs::-webkit-scrollbar {
+        display: none;
+    }
+
     .tab {
-        min-width: 100%;
+        flex: 0 0 auto;
+        min-width: min(168px, 78vw);
+        padding: 8px 12px;
+    }
+
+    .tabLabel {
+        font-size: 14px;
+    }
+
+    .description {
+        margin: 0 2px 6px;
+        font-size: 13px;
+        line-height: 1.45;
     }
 }

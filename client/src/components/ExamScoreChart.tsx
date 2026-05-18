@@ -9,6 +9,7 @@ import {
     XAxis,
     YAxis,
 } from 'recharts'
+import { MOBILE_QUERY, useMediaQuery } from '../hooks/useMediaQuery'
 
 type Point = Record<string, string | number>
 
@@ -46,15 +47,29 @@ export function ExamScoreChart({
     categoryLabel = 'Категория',
     variant,
 }: ExamScoreChartProps) {
+    const isMobile = useMediaQuery(MOBILE_QUERY)
     const chartData = sortPoints(data, categoryKey)
+    const chartHeight = isMobile ? 280 : 340
+    const margin = isMobile
+        ? { top: 8, right: 8, left: 0, bottom: 32 }
+        : { top: 12, right: 24, left: 8, bottom: 8 }
+    const xTick = {
+        fill: 'var(--text-h)',
+        fontSize: isMobile ? 10 : 12,
+    }
+    const xAxisProps = isMobile
+        ? {
+              angle: -42,
+              textAnchor: 'end' as const,
+              height: 56,
+              interval: 0,
+          }
+        : { height: 30, interval: 'preserveStartEnd' as const }
 
     if (variant === 'line') {
         return (
-            <ResponsiveContainer width="100%" height={340}>
-                <LineChart
-                    data={chartData}
-                    margin={{ top: 12, right: 24, left: 8, bottom: 8 }}
-                >
+            <ResponsiveContainer width="100%" height={chartHeight}>
+                <LineChart data={chartData} margin={margin}>
                     <CartesianGrid
                         strokeDasharray="3 3"
                         stroke="var(--border)"
@@ -62,15 +77,17 @@ export function ExamScoreChart({
                     />
                     <XAxis
                         dataKey={categoryKey}
-                        tick={{ fill: 'var(--text-h)', fontSize: 12 }}
+                        tick={xTick}
                         stroke={axisStroke}
                         allowDecimals={false}
+                        {...xAxisProps}
                     />
                     <YAxis
                         domain={['dataMin - 2', 'dataMax + 2']}
                         tick={axisTick}
                         stroke={axisStroke}
-                        width={36}
+                        width={isMobile ? 28 : 36}
+                        tickCount={isMobile ? 5 : undefined}
                     />
                     <Tooltip
                         formatter={(value) => [value ?? '—', 'Средний балл']}
@@ -93,11 +110,8 @@ export function ExamScoreChart({
     }
 
     return (
-        <ResponsiveContainer width="100%" height={340}>
-            <BarChart
-                data={chartData}
-                margin={{ top: 12, right: 24, left: 8, bottom: 8 }}
-            >
+        <ResponsiveContainer width="100%" height={chartHeight}>
+            <BarChart data={chartData} margin={margin}>
                 <CartesianGrid
                     strokeDasharray="3 3"
                     stroke="var(--border)"
@@ -105,14 +119,15 @@ export function ExamScoreChart({
                 />
                 <XAxis
                     dataKey={categoryKey}
-                    tick={{ fill: 'var(--text-h)', fontSize: 12 }}
+                    tick={xTick}
                     stroke={axisStroke}
+                    {...xAxisProps}
                 />
                 <YAxis
                     domain={[0, 100]}
                     tick={axisTick}
                     stroke={axisStroke}
-                    width={36}
+                    width={isMobile ? 28 : 36}
                 />
                 <Tooltip
                     formatter={(value) => [value ?? '—', 'Средний балл']}

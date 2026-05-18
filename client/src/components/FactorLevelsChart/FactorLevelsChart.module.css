@@ -96,8 +96,39 @@
 }
 
 @media (max-width: 640px) {
+    .root {
+        padding: 2px 0 0;
+    }
+
+    .list {
+        gap: 16px;
+    }
+
     .item {
         grid-template-columns: 1fr;
-        gap: 10px;
+        gap: 8px;
+    }
+
+    .label {
+        font-size: 16px;
+    }
+
+    .barWrap {
+        height: 40px;
+    }
+
+    .bar {
+        min-width: 56px;
+        padding-right: 10px;
+    }
+
+    .score {
+        font-size: 16px;
+    }
+
+    .footnote {
+        margin-top: 14px;
+        font-size: 12px;
+        text-align: left;
     }
 }

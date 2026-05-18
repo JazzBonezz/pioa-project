@@ -29,7 +29,7 @@ function App() {
                 <ChartCard
                     featured
                     title="Корреляция с баллом экзамена"
-                    subtitle="Яркие столбцы — топ‑5 для выбранных для графиков ниже"
+                    subtitle="Яркие столбцы — ключевые факторы для графиков ниже"
                     state={correlations}
                     footer={(data) => (
                         <NegativeCorrelationsNote

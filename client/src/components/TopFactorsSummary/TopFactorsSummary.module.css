@@ -50,5 +50,14 @@
 @media (max-width: 640px) {
     .root {
         grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .card {
+        padding: 12px 14px;
+    }
+
+    .body strong {
+        font-size: 14px;
     }
 }

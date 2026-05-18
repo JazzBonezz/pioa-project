@@ -24,7 +24,13 @@ export function factorLabelRu(factorKey: string): string {
     return FACTOR_LABELS_RU[factorKey] ?? factorKey.replace(/_/g, ' ')
 }
 
-export function yAxisWidthForLabels(labels: string[]): number {
+export function yAxisWidthForLabels(
+    labels: string[],
+    compact = false,
+): number {
     const maxLen = Math.max(...labels.map((l) => l.length), 10)
+    if (compact) {
+        return Math.min(132, Math.max(76, Math.ceil(maxLen * 5.2)))
+    }
     return Math.min(280, Math.max(200, Math.ceil(maxLen * 7.8)))
 }

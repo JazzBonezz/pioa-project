@@ -1,4 +1,30 @@
-# React + TypeScript + Vite
+# Клиент (frontend)
+
+Команды для локальной разработки.
+
+Установка зависимостей
+
+```bash
+cd client
+npm install    # или bun install
+```
+
+Запуск в режиме разработки
+
+```bash
+npm run dev    # или bun run dev
+```
+
+Сборка
+
+```bash
+npm run build
+```
+
+Примечания
+
+- Перед сборкой задайте `VITE_API_URL`, если API не доступен через прокси `/api`.
+- Конфигурация dev-сервера и прокси в `vite.config.ts`.# React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
@@ -19,29 +45,29 @@ If you are developing a production application, we recommend updating the config
 
 ```js
 export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+    globalIgnores(['dist']),
+    {
+        files: ['**/*.{ts,tsx}'],
+        extends: [
+            // Other configs...
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+            // Remove tseslint.configs.recommended and replace with this
+            tseslint.configs.recommendedTypeChecked,
+            // Alternatively, use this for stricter rules
+            tseslint.configs.strictTypeChecked,
+            // Optionally, add this for stylistic rules
+            tseslint.configs.stylisticTypeChecked,
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
+            // Other configs...
+        ],
+        languageOptions: {
+            parserOptions: {
+                project: ['./tsconfig.node.json', './tsconfig.app.json'],
+                tsconfigRootDir: import.meta.dirname,
+            },
+            // other options...
+        },
     },
-  },
 ])
 ```
 
@@ -53,23 +79,23 @@ import reactX from 'eslint-plugin-react-x'
 import reactDom from 'eslint-plugin-react-dom'
 
 export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
+    globalIgnores(['dist']),
+    {
+        files: ['**/*.{ts,tsx}'],
+        extends: [
+            // Other configs...
+            // Enable lint rules for React
+            reactX.configs['recommended-typescript'],
+            // Enable lint rules for React DOM
+            reactDom.configs.recommended,
+        ],
+        languageOptions: {
+            parserOptions: {
+                project: ['./tsconfig.node.json', './tsconfig.app.json'],
+                tsconfigRootDir: import.meta.dirname,
+            },
+            // other options...
+        },
     },
-  },
 ])
 ```

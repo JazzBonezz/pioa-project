@@ -58,6 +58,28 @@
     border-inline: 1px solid var(--border);
     min-height: 100svh;
     box-sizing: border-box;
+    overflow-x: clip;
+}
+
+@media (max-width: 640px) {
+    :root {
+        font-size: 15px;
+    }
+
+    #root {
+        border-inline: none;
+    }
+
+    h1 {
+        font-size: 28px;
+        letter-spacing: -0.6px;
+        margin: 12px 0 16px;
+        line-height: 1.15;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
 }
 
 body {

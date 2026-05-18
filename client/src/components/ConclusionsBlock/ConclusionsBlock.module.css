@@ -71,8 +71,27 @@
     color: #e11d48;
 }
 
-@media (max-width: 1024px) {
-    .grid {
-        grid-template-columns: 1fr;
+@media (max-width: 640px) {
+    .root {
+        padding: 18px 14px 22px;
+        border-radius: 10px;
+    }
+
+    .title {
+        margin-bottom: 12px;
+        font-size: 20px;
+    }
+
+    .lead {
+        margin-bottom: 14px;
+        font-size: 14px;
+    }
+
+    .card {
+        padding: 14px 14px;
+    }
+
+    .card li {
+        font-size: 13px;
     }
 }

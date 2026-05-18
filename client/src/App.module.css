@@ -28,3 +28,14 @@
         gap: 28px;
     }
 }
+
+@media (max-width: 640px) {
+    .dashboard {
+        padding: 12px 12px 36px;
+        gap: 22px;
+    }
+
+    .section {
+        gap: 14px;
+    }
+}

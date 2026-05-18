@@ -1,4 +1,14 @@
-.venv
+/.idea/
+/client/node_modules/
+/client/dist/
+/server/.venv/
+/server/factors.db
+/server/__pycache__/
+/node_modules/
+.env
+.env.local
+.DS_Store
+/.vscode/.venv
 factors.db
 data/Factors_clean.csv
 __pycache__/

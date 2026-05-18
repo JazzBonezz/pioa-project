@@ -58,3 +58,37 @@
     composes: status;
     color: #e11d48;
 }
+
+@media (max-width: 640px) {
+    .header {
+        padding: 16px 14px 0;
+    }
+
+    .header h2 {
+        margin-bottom: 10px;
+        font-size: 18px;
+        line-height: 1.25;
+    }
+
+    .header p {
+        font-size: 13px;
+    }
+
+    .body {
+        padding: 8px 6px 14px;
+        min-height: 160px;
+    }
+
+    .bodyTall {
+        min-height: 300px;
+    }
+
+    .featured .body {
+        padding-left: 2px;
+    }
+
+    .status {
+        padding: 32px 12px;
+        font-size: 14px;
+    }
+}
